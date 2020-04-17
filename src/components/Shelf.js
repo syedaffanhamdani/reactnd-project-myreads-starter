@@ -52,7 +52,7 @@ class Shelf extends Component {
                         {this.renderShelf(wantToReadBooks, 'Read', allBooks, moveBookToShelf)}
                     </div>
                 </div>
-                <Link lassName="open-search" to="/search" />
+                <Link className="open-search" to="/search" />
             </div>
         )
     }
