@@ -2,8 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Shelf from './components/Shelf';
-import {BrowserRouter as Router,
-  Link, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Search from './components/Search';
 
 class BooksApp extends React.Component {
