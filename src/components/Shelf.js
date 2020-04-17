@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as BooksAPI from '../BooksAPI';
 import { Link } from 'react-router-dom'
 import Book from './Book';
 
@@ -8,46 +7,21 @@ import Book from './Book';
 
 class Shelf extends Component {
 
-    state = {
-        currentlyReadingBooks: [],
-        wantToReadBooks: [],
-        alreadyReadBooks: []
-    };
-    componentDidMount() {
-        this.getBooks();
-    }
-
-    moveBookToShelf(book, shelf) {
-        BooksAPI.update(book, shelf).then(() => this.getBooks());
-    }
 
 
-    getBooks() {
-
-
-        BooksAPI.getAll().then(books => {
-            let currentlyReadingBooks = books ? books.filter(book => 'currentlyReading' === book.shelf) : null;
-
-            let wantToReadBooks = books ? books.filter(book => book.shelf === 'wantToRead') : null;
-
-            let alreadyReadBooks = books ? books.filter(book => book.shelf === 'read') : null;
-
-            this.setState({ currentlyReadingBooks, wantToReadBooks, alreadyReadBooks });
-        });
-    }
-
-    renderShelf(books, title) {
+    renderShelf(books, title, allBooks, moveBookToShelf) {
         return (
             <div>
                 <div className="bookshelf">
                     <h2 className="bookshelf-title">{title}</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            {books.map((book, index) =>
+                            {books && books.map((book, index) =>
                                 <Book
                                     key={index}
                                     book={book}
-                                    moveBookToShelf={this.moveBookToShelf.bind(this)}
+                                    allBooks={allBooks}
+                                    moveBookToShelf={moveBookToShelf}
                                 />)}
                         </ol>
                     </div>
@@ -60,7 +34,12 @@ class Shelf extends Component {
     }
 
     render() {
-        const { currentlyReadingBooks, wantToReadBooks, alreadyReadBooks } = this.state;
+
+        const { allBooks, moveBookToShelf } = this.props;
+        const currentlyReadingBooks = allBooks ? allBooks.filter(book => book.shelf === 'currentlyReading') : null;
+        const readBooks = allBooks ? allBooks.filter(book => book.shelf === 'wantToRead') : null;
+        const wantToReadBooks = allBooks ? allBooks.filter(book => book.shelf === 'read') : null;
+
         return (
             <div>
                 <div className="list-books">
@@ -68,9 +47,9 @@ class Shelf extends Component {
                         <h1>MyReads</h1>
                     </div>
                     <div className="list-books-content">
-                        {this.renderShelf(currentlyReadingBooks, 'Currently Reading')}
-                        {this.renderShelf(wantToReadBooks, 'Want to Read')}
-                        {this.renderShelf(alreadyReadBooks, 'Read')}
+                        {this.renderShelf(currentlyReadingBooks, 'Currently Reading', allBooks, moveBookToShelf)}
+                        {this.renderShelf(readBooks, 'Want to Read', allBooks,moveBookToShelf)}
+                        {this.renderShelf(wantToReadBooks, 'Read', allBooks, moveBookToShelf)}
                     </div>
                 </div>
                 <Link lassName="open-search" to="/search" />

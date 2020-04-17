@@ -19,11 +19,8 @@ class Search extends Component {
 
     }
 
-    moveBookToShelf(book, shelf) {
-        BooksAPI.update(book, shelf);
-    }
 
-    getSearchResults(queryString, searchResults) {
+    getSearchResults(queryString, searchResults, allBooks, moveBookToShelf) {
 
         if (queryString) {
 
@@ -36,7 +33,8 @@ class Search extends Component {
                                     <Book
                                         key={index}
                                         book={book}
-                                        moveBookToShelf={this.moveBookToShelf.bind(this)}
+                                        moveBookToShelf={moveBookToShelf}
+                                        allBooks={allBooks}
                                     />
 
                                 )
@@ -53,6 +51,7 @@ class Search extends Component {
 
     render() {
         const { searchResults, queryString } = this.state;
+        const { allBooks, moveBookToShelf } = this.props;
 
         return (
             <div className="search-books">
@@ -76,7 +75,7 @@ class Search extends Component {
 
                     </div>
                 </div>
-                {this.getSearchResults(queryString, searchResults)}
+                {this.getSearchResults(queryString, searchResults, allBooks, moveBookToShelf)}
             </div>
         );
     }
