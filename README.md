@@ -1,41 +1,22 @@
 # MyReads Project
 
-This is the starter template for the final assessment project that I made as part of  Udacity's React Fundamentals course. 
+This is the final assessment project that I made as part of Udacity's React Fundamentals course. 
 
+## Short Project Description:
+This app provides a way to users to categorize books. It offers three shelves:
+    1. Read
+    2. Want to read
+    3. Currently reading
+Additionaly users can search for new books and add them to any of the list.
+
+## Installation Instructions:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
-## Structure
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with the app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for the app.
-    ├── App.js 
-    ├── App.test.js # Used for testing. 
-    └── components
-        ├── Book.js 
-        ├── Search.js 
-        ├── Shelf.js 
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for the app. 
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
-
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
 
 ## Backend Server
 
-To simplify the development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+The file [`BooksAPI.js`](src/BooksAPI.js) contains the methods to perform necessary operations on the backend:
 
 * [`getAll`](#getall)
 * [`update`](#update)
@@ -83,8 +64,6 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-## Contributing
+## License
+This project is licensed under the terms of the MIT license
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
